@@ -11,6 +11,14 @@ export abstract class MenuComponent {
   getUrl(): string {
     return this.url;
   }
+  
+  add(_: MenuComponent): MenuComponent {
+    throw new Error('Method not implemented.')
+  }
+  
+  remove(_: MenuComponent): MenuComponent {
+    throw new Error('Method not implemented.')
+  }
 
   abstract toString(): string;
 
