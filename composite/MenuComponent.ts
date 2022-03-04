@@ -2,7 +2,10 @@ export abstract class MenuComponent {
   name: string;
   url: string;
 
-  menuComponents: MenuComponent[] = [];
+  constructor(name: string, url: string) {
+    this.name = name;
+    this.url = url;
+  }
 
   getString(): string {
     return this.name;

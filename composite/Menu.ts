@@ -1,11 +1,8 @@
 import { MenuComponent } from "./MenuComponent";
 
 export class Menu extends MenuComponent {
-  constructor(name: string, url: string) {
-    super();
-    this.name = name;
-    this.url = url;
-  }
+
+  menuComponents: MenuComponent[] = [];
 
   add(menuComponent: MenuComponent): MenuComponent {
     this.menuComponents.push(menuComponent);
