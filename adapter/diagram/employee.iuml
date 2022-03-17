@@ -1,0 +1,66 @@
+@startuml employee
+package "base" {
+
+  interface Employee {
+    getId(): String
+    getFirstName(): String
+    getLastName(): String
+    getEmail(): String
+  }
+
+  class EmployeeCSV {
+    -id: Int
+    -firstname: String
+    -lastName: String
+    -emailAddress: String
+
+    EmployeeCSV(values: String)
+    // getter/setter()
+  }
+
+  class EmployeeDB {
+    -id: String
+    -firstname: String
+    -lastName: String
+    -email: String
+
+    EmployeeDB(id: String, firstName: String, lastName: String, email: String)
+    // getter/setter()
+  }
+
+  class EmployeeLdap {
+    -cn: Int
+    -givenName: String
+    -surname: String
+    -mail: String
+
+    EmployeeLdap(cn: String, surname: String, givenName: String, mail: String)
+    // getter/setter()
+  }
+
+
+
+
+  Employee <|-- EmployeeDB
+}
+
+class EmployeeAdapterCSV {
+  -instance: EmployeeCSV
+  +EmployeeAdapterCSV(instance: EmployeeCSV)
+}
+
+class EmployeeAdapterLdap {
+  -instance: EmployeeLdap
+  +EmployeeAdapterCSV(instance: EmployeeLdap)
+}
+
+Employee <|-- EmployeeAdapterCSV
+Employee <|-- EmployeeAdapterLdap
+
+EmployeeAdapterCSV *-- EmployeeCSV
+EmployeeAdapterLdap *-- EmployeeLdap
+
+class EmployeeClient {
+  getEmployeeList(): List<Employee>
+}
+@enduml
